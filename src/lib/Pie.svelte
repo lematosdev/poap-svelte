@@ -1,29 +1,63 @@
 <script>
-  import { Pie } from "svelte-chartjs";
-  import { data, data2 } from "./data";
-
+  import { Pie, Bar } from "svelte-chartjs";
+  import { data2 } from "./data";
   import {
-    Chart as ChartJS,
+    Chart,
     Title,
     Tooltip,
     Legend,
-    ArcElement,
+    BarElement,
     CategoryScale,
+    LinearScale,
+    ArcElement,
   } from "chart.js";
 
-  ChartJS.register(Title, Tooltip, Legend, ArcElement, CategoryScale);
+  Chart.register(
+    Title,
+    Tooltip,
+    Legend,
+    BarElement,
+    CategoryScale,
+    LinearScale,
+    ArcElement
+  );
+  export let title1 = "Informacion";
+  export let title2 = "Informacion2";
+  const data = {
+  labels: ['Red', 'Blue',"neko"],
+  datasets: [
+    {
+      label: 'NFT Votos',
+      data: [12, 19,50],
+      backgroundColor: [
+        'rgba(0, 20, 71, 0.5)',
+        'rgba(98,  182, 239,0.4)',
+        'rgba(255, 218, 128,0.4)',
+      ],
+      borderWidth: 2,
+      borderColor: [
+        'rgba(255, 134, 159, 1)',
+        'rgba(98,  182, 239, 1)',
+        'rgba(255, 218, 128,0.4)',
+      ],
+    },
+  ],
+};
 </script>
 
 <div class="div-chat">
   <div class="size-chart black">
-    <h2 class="test">Evento Online</h2>
+    <h2 class="h2-1">{title1}</h2>
 
-    <div class="test2"><Pie {data} options={{ responsive: true }}/> </div> 
+    <div class="pie-1">
+      <div class="bar-1"><Pie {data} options={{ responsive: true }} /></div>
+    </div>
   </div>
   <div class="size-chart blue">
-    <h2 class="test">Minteos evento online</h2>
-
-   <div class="test2"><Pie {data} options={{ responsive: true }}/> </div>
+    <h2 class="h2-2">{title2}</h2>
+    <div class="bar-2">
+    <Bar  {data2} width={100} height={50} options={{ responsive: true }} />
+    </div>
   </div>
 </div>
 
@@ -34,25 +68,45 @@
     padding-bottom: 150px;
     padding-top: 90px;
     width: 100%;
-  
   }
   .black {
     background-color: coral;
     padding-bottom: 150px;
     padding-top: 90px;
     width: 100%;
-    
   }
- 
-  .test {
+
+  .h2-1 {
     display: flex;
     justify-content: center;
     align-items: center;
+    margin-left: 200px;
   }
-  .test2 {
+  .h2-2 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-right: 170px;
+  }
+  .bar-1 {
     display: flex;
     justify-content: center;
     align-items: center;
     height: 200px;
+    margin-left: 200px;
+  }
+  .pie-1 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 200px;
+    margin-left: 10px;
+  }
+  .bar-2 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 200px;
+    margin-right: 170px;
   }
 </style>

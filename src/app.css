@@ -2,6 +2,7 @@ body
 {
   margin: 0 auto;
   padding: 0;
+
 }
 :root {
   font-family: Inter, Avenir, Helvetica, Arial, sans-serif;
@@ -90,7 +91,11 @@ header{
 } 
 nav a {
   color: #fff;
-  padding-right: 20px;
+  padding: 16px;
+  font-family: sans-serif;
+  font-weight: 400;
+  font-size: 13px;
+  line-height: 75px;
 }
 a:hover {
   color: #BD424A;
