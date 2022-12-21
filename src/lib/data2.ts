@@ -1,18 +1,4 @@
 export const data = {
-  labels: ['Virtual', 'Physical'],
-  datasets: [
-    {
-      data: [11.1, 89.9],
-      backgroundColor: [
-        '#6CE5E8',
-        '#41B8D5',
-      ]
-    }
-  ]
-};
-
-
-export const data2 = {
   labels: ['Red', 'Blue',"neko"],
   datasets: [
     {
