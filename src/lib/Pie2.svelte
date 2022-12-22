@@ -8,6 +8,8 @@
   export const title1 = "Minteos Evento Online";
   export const title2 = "Minteos evento presencial";
 
+  Chart.defaults.color = "#fff";
+  Chart.defaults.borderColor = '#383B39';
   function createChart() {
     const ctx = document.getElementById("myChart");
 
@@ -19,7 +21,7 @@
         datasets: [
           {
             data: [11.1, 89.9],
-            backgroundColor: ["#6CE5E8", "#41B8D5"],
+            backgroundColor: ["#615192", "#41B8D5"],
           },
         ],
       },
@@ -48,6 +50,7 @@
           {
             label: "# of Votes",
             data: [12, 19, 3, 5, 2, 3],
+            backgroundColor: ["#615192", "#41B8D5"],
             borderWidth: 1,
           },
         ],
@@ -76,7 +79,7 @@
         datasets: [
           {
             data: [3, 5, 10, 15, 18, 19],
-            backgroundColor: ["#6CE5E8", "#41B8D5"],
+            backgroundColor: ["#6CE5E8", "#41B8D5", "#208BA8","#2055A8 ","#4D20A8"],
           },
         ],
       },
@@ -105,6 +108,7 @@
           {
             label: "# of Votes",
             data: [3, 5, 10, 15, 18, 19],
+            backgroundColor: ["#615192", "#41B8D5","#4F628E","#764B8E","#4F628E"],
             borderWidth: 1,
           },
         ],
@@ -121,7 +125,7 @@
   }
   onMount(createChart4);
 </script>
-
+<div class="gradient">
 <div class="div">
   <div class="container myChart">
     <h2 class="">Evento online</h2>
@@ -151,14 +155,14 @@
     </div>
   </div>
 </div>
-
+</div>
 <style>
   .myChart {
     display: flex;
     align-items: center;
     flex-direction: column;
-    width: 300px;
-    background-color: rgb(226, 43, 67);
+    width: 250px;
+   
   }
   .myChart2 {
     display: flex;
@@ -166,22 +170,23 @@
     flex-direction: column;
     width: 500px;
 
-    background-color: blueviolet;
+   
   }
   .myChart4 {
     display: flex;
     align-items: center;
     flex-direction: column;
     width: 500px;
-
-    background-color: blueviolet;
   }
   .div {
     display: flex;
     height: 400px;
-    margin-top: 100px;
     padding-top: 30px;
-    background-color: brown;
+    
+
+
+
+
   }
   .container {
     width: 50%;
@@ -190,5 +195,14 @@
   .ss {
     width: 20px;
     height: 20px;
+  }
+  .gradient{
+    background-color: #301060;
+
+
+/*     background-color: #4158D0;
+background-image: linear-gradient(43deg, #4158D0 0%, #C850C0 46%, #FFCC70 100%); */
+
+
   }
 </style>
