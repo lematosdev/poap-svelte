@@ -1,112 +1,115 @@
 <script>
-  import { Pie, Bar } from "svelte-chartjs";
-  import { data2 } from "./data";
-  import {
-    Chart,
-    Title,
-    Tooltip,
-    Legend,
-    BarElement,
-    CategoryScale,
-    LinearScale,
-    ArcElement,
-  } from "chart.js";
-
-  Chart.register(
-    Title,
-    Tooltip,
-    Legend,
-    BarElement,
-    CategoryScale,
-    LinearScale,
-    ArcElement
-  );
-  export let title1 = "Informacion";
-  export let title2 = "Informacion2";
-  const data = {
-  labels: ['Red', 'Blue',"neko"],
-  datasets: [
-    {
-      label: 'NFT Votos',
-      data: [12, 19,50],
-      backgroundColor: [
-        'rgba(0, 20, 71, 0.5)',
-        'rgba(98,  182, 239,0.4)',
-        'rgba(255, 218, 128,0.4)',
-      ],
-      borderWidth: 2,
-      borderColor: [
-        'rgba(255, 134, 159, 1)',
-        'rgba(98,  182, 239, 1)',
-        'rgba(255, 218, 128,0.4)',
-      ],
-    },
-  ],
-};
-</script>
-
-<div class="div-chat">
-  <div class="size-chart black">
-    <h2 class="h2-1">{title1}</h2>
-
-    <div class="pie-1">
-      <div class="bar-1"><Pie {data} options={{ responsive: true }} /></div>
+    import Chart from "chart.js/auto";
+    import { onMount } from "svelte";
+  
+    //default values
+    export const typeGraphic1 = "pie";
+    export const typeGraphic2 = "bar";
+    export const title1 = "Minteos Evento Online";
+    export const title2 = "Minteos evento presencial";
+  
+    function createChart3() {
+      const ctx = document.getElementById("myChart3");
+  
+      // @ts-ignore
+      new Chart(ctx, {
+        type: typeGraphic1,
+        data: {
+          labels: ["Virtual", "Physical","neko"],
+          datasets: [
+            {
+              data: [11.1, 89.9,10],
+              backgroundColor: ["#6CE5E8", "#41B8D5","#41B825"],
+            },
+          ],
+        },
+        options: {
+          responsive: true,
+          scales: {
+            y: {
+              beginAtZero: true,
+            },
+          },
+        },
+      });
+    }
+    onMount(createChart3);
+  
+    //2
+    function createChart2() {
+      const ctx2 = document.getElementById("myChart2");
+  
+      // @ts-ignore
+      new Chart(ctx2, {
+        type: typeGraphic2,
+        data: {
+          labels: ["Neko", "Blue", "Yellow", "Green", "Purple", "Orange"],
+          datasets: [
+            {
+              label: "# of Votes",
+              data: [12, 19, 3, 5, 2, 3],
+              borderWidth: 1,
+            },
+          ],
+        },
+        options: {
+          responsive: true,
+          scales: {
+            y: {
+              beginAtZero: true,
+            },
+          },
+        },
+      });
+    }
+    onMount(createChart2);
+  </script>
+  
+  <div class="div">
+    <div class="container myChart">
+      <h2 class="">{title1}</h2>
+      <div class="myChart">
+        <canvas id="myChart3" />
+      </div>
+    </div>
+    <div class="container myChart2">
+      <h2 class="">{title1}</h2>
+      <div class="myChart2">
+        <canvas id="myChart2" class="ss" />
+      </div>
     </div>
   </div>
-  <div class="size-chart blue">
-    <h2 class="h2-2">{title2}</h2>
-    <div class="bar-2">
-    <Bar  {data2} width={100} height={50} options={{ responsive: true }} />
-    </div>
-  </div>
-</div>
-
-
-<style>
-  .blue {
-    background-color: blue;
-    padding-bottom: 150px;
-    padding-top: 90px;
-    width: 100%;
-  }
-  .black {
-    background-color: coral;
-    padding-bottom: 150px;
-    padding-top: 90px;
-    width: 100%;
-  }
-
-  .h2-1 {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-left: 200px;
-  }
-  .h2-2 {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-right: 170px;
-  }
-  .bar-1 {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 200px;
-    margin-left: 200px;
-  }
-  .pie-1 {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 200px;
-    margin-left: 10px;
-  }
-  .bar-2 {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 200px;
-    margin-right: 170px;
-  }
-</style>
+  
+  <style>
+    .myChart {
+      display: flex;
+      align-items: center;
+      flex-direction: column;
+      width: 250px;
+      background-color: rgb(226, 43, 67);
+    }
+    .myChart2 {
+      display: flex;
+      align-items: center;
+      flex-direction: column;
+      width: 500px;
+  
+      background-color: blueviolet;
+    }
+    .div {
+      display: flex;
+      height: 400px;
+      margin-top: 100px;
+      padding-top: 30px;
+      background-color: brown;
+    }
+    .container {
+      width: 50%;
+    }
+  
+    .ss {
+      width: 20px;
+      height: 20px;
+    }
+  </style>
+  

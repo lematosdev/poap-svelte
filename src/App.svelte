@@ -1,11 +1,8 @@
 <script>
-  import Pie from './lib/Pie.svelte';
   import Top from './lib/top.svelte';
+  import Pie from './lib/Pie2.svelte';
+  import Pie2 from './lib/Pie2.svelte';
   
 </script>
 <Top/>
-<Pie 
-title1="Evento Online"
-title2="Eventos Presenciales"
-/>
-<Pie/>
+<Pie2/>
