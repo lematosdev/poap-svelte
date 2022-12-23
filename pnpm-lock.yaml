@@ -4,6 +4,7 @@ specifiers:
   '@sveltejs/vite-plugin-svelte': ^2.0.0
   '@tsconfig/svelte': ^3.0.0
   chart.js: ^4.1.1
+  chartjs-plugin-datalabels: ^2.2.0
   svelte: ^3.54.0
   svelte-chartjs: ^3.1.0
   svelte-check: ^2.10.0
@@ -14,6 +15,7 @@ specifiers:
 
 dependencies:
   chart.js: 4.1.1
+  chartjs-plugin-datalabels: 2.2.0_chart.js@4.1.1
   svelte-chartjs: 3.1.0_rtwzhpjk3rjqr2jnch3pv3czl4
 
 devDependencies:
@@ -377,6 +379,14 @@ packages:
     engines: {pnpm: ^7.0.0}
     dependencies:
       '@kurkle/color': 0.3.1
+    dev: false
+
+  /chartjs-plugin-datalabels/2.2.0_chart.js@4.1.1:
+    resolution: {integrity: sha512-14ZU30lH7n89oq+A4bWaJPnAG8a7ZTk7dKf48YAzMvJjQtjrgg5Dpk9f+LbjCF6bpx3RAGTeL13IXpKQYyRvlw==}
+    peerDependencies:
+      chart.js: '>=3.0.0'
+    dependencies:
+      chart.js: 4.1.1
     dev: false
 
   /chokidar/3.5.3:

@@ -1,9 +1,11 @@
 <script>
-  import Top from './lib/top.svelte';
+  import Header from './lib/top.svelte';
   import Footer from './lib/footer.svelte';
-  import Pie2 from './lib/Pie2.svelte';
-  
+  import Charts from './lib/Charts.svelte';
 </script>
-<Top/>
-<Pie2/>
-<Footer/>
+
+<Header />
+<main>
+  <Charts />
+</main>
+<Footer />
