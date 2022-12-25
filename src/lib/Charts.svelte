@@ -1,11 +1,11 @@
 <script>
-  import Chart from 'chart.js/auto';
-  import { Pie } from 'svelte-chartjs';
-  import ChartDataLabels from 'chartjs-plugin-datalabels';
-  import { onMount } from 'svelte';
+  import Chart from "chart.js/auto";
+  import { Pie } from "svelte-chartjs";
+  import ChartDataLabels from "chartjs-plugin-datalabels";
+  import { onMount } from "svelte";
 
-  Chart.defaults.color = '#fff';
-  Chart.defaults.borderColor = '#383B39';
+  Chart.defaults.color = "#fff";
+  Chart.defaults.borderColor = "#383B39";
   Chart.register(ChartDataLabels);
 
   // let chart;
@@ -15,13 +15,10 @@
     //   'https://6lz6vyjs0e.execute-api.us-east-1.amazonaws.com/event/50400'
     // );
     // chart = await res.json();
-
     // const chart1 = createChart({
     //   ...data.chart1,
     //   plugins: [ChartDataLabels],
-
     // });
-
     // createChart(canvas2, {
     //   type: 'bar',
     //   data: {
@@ -51,7 +48,6 @@
     //     }
     //   }
     // });
-
     // createChart(canvas3, {
     //   type: 'pie',
     //   data: {
@@ -80,7 +76,6 @@
     //     responsive: true
     //   }
     // });
-
     // createChart(canvas4, {
     //   type: 'bar',
     //   data: {
@@ -119,17 +114,19 @@
   });
 </script>
 
-<div class="gradient">
-  <!-- {#if chart} -->
+<div class="container-chart">
+  <div class="gradient">
+    <!-- {#if chart} -->
+    <h2>hola mundo</h2>
     <div class="myChart">
       <Pie
         data={{
-          labels: ['Virtual', 'Physical'],
+          labels: ["Virtual", "Physical"],
           datasets: [
             {
-              data: [41, 70]
-            }
-          ]
+              data: [41, 70],
+            },
+          ],
         }}
         options={{
           responsive: true,
@@ -137,30 +134,70 @@
             datalabels: {
               formatter: (value, dnct1) => {
                 let sum = 0;
-                let dataArr =
-                  dnct1.chart.data.datasets[0].data;
+                let dataArr = dnct1.chart.data.datasets[0].data;
                 dataArr.map((data) => {
                   sum += Number(data);
                 });
 
-                let percentage =
-                  ((value * 100) / sum).toFixed(2) + '%';
+                let percentage = ((value * 100) / sum).toFixed(2) + "%";
                 return percentage;
               },
-              backgroundColor: '#262A27',
+              backgroundColor: "#262A27",
               borderRadius: 8,
-              textStrokeWidth: 0.2
-            }
-          }
+              textStrokeWidth: 0.2,
+            },
+          },
         }}
       />
     </div>
+  </div>
+  <div class="gradient">
+    <!-- {#if chart} -->
+    <h2>hola mundo</h2>
+    <div class="myChart">
+      <Pie
+        data={{
+          labels: ["Virtual", "Physical"],
+          datasets: [
+            {
+              data: [41, 70],
+            },
+          ],
+        }}
+        options={{
+          responsive: true,
+          plugins: {
+            datalabels: {
+              formatter: (value, dnct1) => {
+                let sum = 0;
+                let dataArr = dnct1.chart.data.datasets[0].data;
+                dataArr.map((data) => {
+                  sum += Number(data);
+                });
+
+                let percentage = ((value * 100) / sum).toFixed(2) + "%";
+                return percentage;
+              },
+              backgroundColor: "#262A27",
+              borderRadius: 8,
+              textStrokeWidth: 0.2,
+            },
+          },
+        }}
+      />
+    </div>
+  </div>
   <!-- {:else} -->
-    <!-- <h1 class="title">Loading...</h1> -->
+  <!-- <h1 class="title">Loading...</h1> -->
   <!-- {/if} -->
 </div>
 
 <style>
+  .container-chart {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
   .myChart {
     display: flex;
     align-items: center;
