@@ -2,8 +2,11 @@
 
 
 </script>
-<div class="red">
-
+<div class="red ">
+<a  href="https://www.instagram.com/nftforworld/"><img class="hover:border-2 hover:border-white-500 m-1 " src="https://i.imgur.com/6B7aSMU.png" alt="instagram"></a>
+<a href="https://twitter.com/NFTForworld"><img src="https://i.imgur.com/KoDuWgE.png" alt="twitter"></a>
+<a href="https://www.linkedin.com/company/nft-for-world/"><img src="https://i.imgur.com/8QXF7dI.png" alt="linkedin"></a>
+<a href="https://www.youtube.com/channel/UCCo4rdqnZw2lO2qGH66DMDQ"><img src="https://i.imgur.com/IlCl8k3.png" alt="youtube"></a>
 </div>
 <div class="color-footer">
 
@@ -42,7 +45,7 @@ justify-content: center;
     align-items: center;
     justify-content: center;
     height: 70px;
-    background-color: aqua;
+    background-color: #301161
   }
 
 </style>
