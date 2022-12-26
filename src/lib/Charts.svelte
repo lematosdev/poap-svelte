@@ -1,8 +1,10 @@
 <script>
   import Chart from 'chart.js/auto';
-  import { Pie } from 'svelte-chartjs';
+  import { Pie, Bar } from 'svelte-chartjs';
   import ChartDataLabels from 'chartjs-plugin-datalabels';
   import { onMount } from 'svelte';
+  import { chartsData } from '../store';
+
 
   Chart.defaults.color = '#fff';
   Chart.defaults.borderColor = '#383B39';
@@ -15,13 +17,10 @@
     //   'https://6lz6vyjs0e.execute-api.us-east-1.amazonaws.com/event/50400'
     // );
     // chart = await res.json();
-
     // const chart1 = createChart({
     //   ...data.chart1,
     //   plugins: [ChartDataLabels],
-
     // });
-
     // createChart(canvas2, {
     //   type: 'bar',
     //   data: {
@@ -51,7 +50,6 @@
     //     }
     //   }
     // });
-
     // createChart(canvas3, {
     //   type: 'pie',
     //   data: {
@@ -80,7 +78,6 @@
     //     responsive: true
     //   }
     // });
-
     // createChart(canvas4, {
     //   type: 'bar',
     //   data: {
@@ -119,10 +116,43 @@
   });
 </script>
 
-<div class="gradient">
-  <!-- {#if chart} -->
+<div class="flex items-center justify-center">
+  <div>
+    <!-- {#if chart} -->
     <div class="myChart">
       <Pie
+        data={$chartsData.chart1}
+        options={{
+          responsive: true,
+          plugins: {
+            datalabels: {
+              formatter: (value, dnct1) => {
+                let sum = 0;
+                let dataArr =
+                  dnct1.chart.data.datasets[0].data;
+                dataArr.map((data) => {
+                  sum += Number(data);
+                });
+
+                let percentage =
+                  ((value * 100) / sum).toFixed(2) + '%';
+                return percentage;
+              },
+              backgroundColor: '#262A27',
+              borderRadius: 8,
+              textStrokeWidth: 0.2
+            }
+          }
+        }}
+      />
+    </div>
+  </div>
+  <div>
+    <h2 class="flex items-center justify-center">
+      Hola Mundo
+    </h2>
+    <div class="myChart">
+      <Bar
         data={{
           labels: ['Virtual', 'Physical'],
           datasets: [
@@ -155,47 +185,17 @@
         }}
       />
     </div>
-  <!-- {:else} -->
-    <!-- <h1 class="title">Loading...</h1> -->
-  <!-- {/if} -->
+  </div>
 </div>
+<!-- {:else} -->
+<!-- <h1 class="title">Loading...</h1> -->
 
+<!-- {/if} -->
 <style>
   .myChart {
     display: flex;
     align-items: center;
-    flex-direction: column;
+    justify-content: center;
     width: 250px;
-  }
-  .myChart2 {
-    display: flex;
-    align-items: center;
-    flex-direction: column;
-    width: 500px;
-  }
-  .myChart4 {
-    display: flex;
-    align-items: center;
-    flex-direction: column;
-    width: 500px;
-  }
-  .div {
-    display: flex;
-    height: 400px;
-    padding-top: 30px;
-  }
-  .container {
-    width: 50%;
-  }
-
-  .ss {
-    width: 20px;
-    height: 20px;
-  }
-  .gradient {
-    background-color: #301060;
-
-    /*     background-color: #4158D0;
-background-image: linear-gradient(43deg, #4158D0 0%, #C850C0 46%, #FFCC70 100%); */
   }
 </style>
