@@ -5,7 +5,6 @@
   import { onMount } from 'svelte';
   import { chartsData } from '../store';
 
-
   Chart.defaults.color = '#fff';
   Chart.defaults.borderColor = '#383B39';
   Chart.register(ChartDataLabels);
@@ -118,7 +117,6 @@
 
 <div class="flex items-center justify-center">
   <div>
-    <!-- {#if chart} -->
     <div class="myChart">
       <Pie
         data={$chartsData.chart1}
@@ -187,15 +185,3 @@
     </div>
   </div>
 </div>
-<!-- {:else} -->
-<!-- <h1 class="title">Loading...</h1> -->
-
-<!-- {/if} -->
-<style>
-  .myChart {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 250px;
-  }
-</style>
