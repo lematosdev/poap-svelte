@@ -1,5 +1,19 @@
 /* Write your global styles here, in PostCSS syntax */
+html,
+body {
+  @apply h-full overflow-hidden;
+}
+
 @tailwind base;
+
+@layer base {
+  input[type='number']::-webkit-inner-spin-button,
+  input[type='number']::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+}
+
 body {
   margin: 0 auto;
   padding: 0;
@@ -104,5 +118,3 @@ a:hover {
   display: flex;
   justify-content: center;
 }
-@tailwind components;
-@tailwind utilities;

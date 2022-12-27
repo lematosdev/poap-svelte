@@ -9,7 +9,7 @@ module.exports = {
     )
   ],
   theme: {
-    extend: {}
+    extend: { colors: { purple: '#301161' } }
   },
   plugins: [
     require('@skeletonlabs/skeleton/tailwind/theme.cjs')
