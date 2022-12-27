@@ -1,9 +1,8 @@
 <script lang="ts">
-  import Header from './lib/top.svelte';
-  import Footer from './lib/footer.svelte';
+  import Header from './lib/Header.svelte';
+  import Footer from './lib/Footer.svelte';
   import Form from './lib/Form.svelte';
   import {
-    AppShell,
     ProgressRadial
   } from '@skeletonlabs/skeleton';
   import { chartsData, loading } from './store';
@@ -22,14 +21,12 @@
 <!-- </main> -->
 <!-- <Footer /> -->
 
-<AppShell>
-  <Header />
-  <div class="m-48">
-    {#if !$loading}
-      <Form />
-    {:else}
-      <ProgressRadial class="w-1/3 p-10 mx-auto my-0" />
-    {/if}
-  </div>
-  <Footer />
-</AppShell>
+<Header />
+<main class="min-h-screen mb-32 mt-10">
+  {#if !$loading}
+    <Form />
+  {:else}
+    <ProgressRadial class="w-1/3 p-10 mx-auto my-0" />
+  {/if}
+</main>
+<Footer />

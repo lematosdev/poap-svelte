@@ -2,7 +2,7 @@
   import { AppBar } from '@skeletonlabs/skeleton';
 </script>
 
-<AppBar background="bg-black">
+<AppBar background="bg-black" class="w-full h-16">
   <svelte:fragment slot="lead">
     <a href="https://nftforworld.com/"
       ><img

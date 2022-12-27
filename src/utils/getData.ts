@@ -95,12 +95,13 @@ const exportData = async (id: string) => {
       })
     );
 
-    const config: ChartConfiguration = {
+    const chart1: ChartConfiguration = {
       type: 'pie',
       data: {
         labels: ['Online', 'Presencial'],
         datasets: [
           {
+            label: 'Eventos',
             data: eventsData.reduce(
               (acc, cur) => {
                 if (cur.virtual_event) {
@@ -117,7 +118,34 @@ const exportData = async (id: string) => {
       }
     };
 
-    return { chart1: config.data };
+    const maxAddresses = [
+      ...new Set(
+        Object.keys(events)
+          .map((id) => events[id].totalAddresses)
+          .sort((a, b) => b - a)
+      )
+    ];
+
+    const chart2: ChartConfiguration = {
+      type: 'pie',
+      data: {
+        labels: maxAddresses,
+        datasets: [
+          {
+            label: '',
+            data: Object.keys(events).reduce((acc, cur) => {
+              const count = maxAddresses.find(
+                (a) => a === events[cur].totalAddresses
+              );
+              count && acc[maxAddresses.indexOf(count)]++;
+              return acc;
+            }, new Array(maxAddresses.length).fill(0))
+          }
+        ]
+      }
+    };
+
+    return { chart1: chart1.data, chart2: chart2.data };
   } catch (err) {
     console.log(err);
     throw Error('Error building chart data');
