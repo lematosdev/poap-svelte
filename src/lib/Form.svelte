@@ -42,10 +42,13 @@
         type="number"
         id="id"
         name="eventId"
-        class="h-8 my-5 px-3 text-white border focus:outline-none focus:shadow-outline"
-        placeholder="Enter Event ID"
+        class="h-12 my-5 px-3 text-lg text-white border focus:outline-none focus:shadow-outline"
+        placeholder="Escribe tu ID"
         on:wheel={(e) => e.currentTarget.blur()}
       />
+      <div class="flex items-center justify-center">
+      <button class="btn btn-filled-surface btn-lg text-white">Enviar</button>
+    </div>
     </div>
   </form>
 {/if}

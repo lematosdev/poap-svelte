@@ -1,5 +1,7 @@
 import { getAccessToken } from './accessToken';
 import type { ChartConfiguration } from 'chart.js/auto';
+import { toastStore, type ToastSettings } from '@skeletonlabs/skeleton';
+			
 
 const exportData = async (id: string) => {
   const tokens: any[] = [];
@@ -34,7 +36,12 @@ const exportData = async (id: string) => {
         options
       );
       const data = await response.json();
-
+     
+      if(!data){
+        console.log("Esta hacio", data)
+      }else{
+        console.log("con algo dentro", data)
+      }
       tokens.push(...(data.tokens as []));
     }
   } catch (error) {
@@ -189,12 +196,35 @@ const exportData = async (id: string) => {
       }
     };
 
-    return {
-      chart1: chart1.data,
-      chart2: chart2.data,
-      chart3: chart3.data,
-      chart4: chart4.data
-    };
+    function triggerToast(): void {
+      const t: ToastSettings = {
+        message: '👋 Hello and welcome to Skeleton.',
+        // Optional: Presets for primary | secondary | tertiary | warning
+        preset: 'primary',
+        // Optional: The auto-hide settings
+        autohide: true,
+        timeout: 5000,
+        // Optional: Adds a custom action button
+        action: {
+          label: 'Greeting',
+          response: () => alert('Hello, Skeleton')
+        }
+      };
+      toastStore.trigger(t);
+    }
+          
+    triggerToast()
+if(chart1.data){
+  return console.log("agua agua")
+}else{  return  {
+      
+    chart1: chart1.data,
+    chart2: chart2.data,
+    chart3: chart3.data,
+    chart4: chart4.data
+  };
+}
+    
   } catch (err) {
     console.log(err);
     throw Error('Error building chart data');
