@@ -95,6 +95,43 @@ const exportData = async (id: string) => {
       })
     );
 
+    const onlineVSPhisycal = eventsData.reduce(
+      (acc, cur) => {
+        if (cur.virtual_event) {
+          acc[0]++;
+        } else {
+          acc[1]++;
+        }
+        return acc;
+      },
+      [0, 0]
+    );
+    const mostMintedVirtual = eventsData
+      .filter((e) => e.virtual_event)
+      .map((e) => events[e.id])
+      .sort((a, b) => b.totalAddresses - a.totalAddresses)
+      .slice(0, 5);
+
+    const mostMintedPhisycal = eventsData
+      .filter((e) => !e.virtual_event)
+      .map((e) => events[e.id])
+      .sort((a, b) => b.totalAddresses - a.totalAddresses)
+      .slice(0, 5);
+
+    const eventsCountries = eventsData.reduce(
+      (acc, cur) => {
+        if (!cur.virtual_event || !cur.country) return acc;
+        const country = cur.country.trim();
+
+        if (!acc[country]) {
+          acc[country] = 1;
+        } else {
+          acc[country]++;
+        }
+        return acc;
+      },
+      new Object()
+    );
     const chart1: ChartConfiguration = {
       type: 'pie',
       data: {
@@ -102,50 +139,62 @@ const exportData = async (id: string) => {
         datasets: [
           {
             label: 'Eventos',
-            data: eventsData.reduce(
-              (acc, cur) => {
-                if (cur.virtual_event) {
-                  acc[0]++;
-                } else {
-                  acc[1]++;
-                }
-                return acc;
-              },
-              [0, 0]
+            data: onlineVSPhisycal
+          }
+        ]
+      }
+    };
+
+    const chart2: ChartConfiguration = {
+      type: 'pie',
+      data: {
+        labels: Object.keys(mostMintedVirtual).map(
+          (id) => mostMintedVirtual[id].name.split('-')[0]
+        ),
+        datasets: [
+          {
+            data: Object.keys(mostMintedVirtual).map(
+              (id) => mostMintedVirtual[id].totalAddresses
             )
           }
         ]
       }
     };
 
-    const maxAddresses = [
-      ...new Set(
-        Object.keys(events)
-          .map((id) => events[id].totalAddresses)
-          .sort((a, b) => b - a)
-      )
-    ];
-
-    const chart2: ChartConfiguration = {
-      type: 'pie',
+    const chart3: ChartConfiguration = {
+      type: 'bar',
       data: {
-        labels: maxAddresses,
+        labels: Object.keys(mostMintedPhisycal).map(
+          (id) => mostMintedPhisycal[id].name.split('-')[0]
+        ),
         datasets: [
           {
-            label: '',
-            data: Object.keys(events).reduce((acc, cur) => {
-              const count = maxAddresses.find(
-                (a) => a === events[cur].totalAddresses
-              );
-              count && acc[maxAddresses.indexOf(count)]++;
-              return acc;
-            }, new Array(maxAddresses.length).fill(0))
+            data: Object.keys(mostMintedPhisycal).map(
+              (id) => mostMintedPhisycal[id].totalAddresses
+            )
           }
         ]
       }
     };
 
-    return { chart1: chart1.data, chart2: chart2.data };
+    const chart4: ChartConfiguration = {
+      type: 'bar',
+      data: {
+        labels: Object.keys(eventsCountries),
+        datasets: [
+          {
+            data: Object.values(eventsCountries)
+          }
+        ]
+      }
+    };
+
+    return {
+      chart1: chart1.data,
+      chart2: chart2.data,
+      chart3: chart3.data,
+      chart4: chart4.data
+    };
   } catch (err) {
     console.log(err);
     throw Error('Error building chart data');

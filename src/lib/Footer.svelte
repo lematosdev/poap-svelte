@@ -1,4 +1,4 @@
-<footer class="w-full fixed bottom-0">
+<footer class="w-full">
   <div class="flex items-center justify-center bg-purple h-24 ">
     <a href="https://www.instagram.com/nftforworld/"
       ><img
