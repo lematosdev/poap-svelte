@@ -1,7 +1,7 @@
-lockfileVersion: 5.3
+lockfileVersion: 5.4
 
 specifiers:
-  '@skeletonlabs/skeleton': ^0.80.9
+  '@skeletonlabs/skeleton': ^0.86.9
   '@sveltejs/vite-plugin-svelte': ^2.0.0
   '@tsconfig/svelte': ^3.0.0
   autoprefixer: ^10.4.7
@@ -20,11 +20,11 @@ specifiers:
   vite: ^4.0.0
 
 dependencies:
-  '@skeletonlabs/skeleton': 0.80.9
+  '@skeletonlabs/skeleton': 0.86.9
   axios: 1.2.1
   chart.js: 4.1.1
   chartjs-plugin-datalabels: 2.2.0_chart.js@4.1.1
-  svelte-chartjs: 3.1.0_chart.js@4.1.1+svelte@3.55.0
+  svelte-chartjs: 3.1.0_rtwzhpjk3rjqr2jnch3pv3czl4
 
 devDependencies:
   '@sveltejs/vite-plugin-svelte': 2.0.2_svelte@3.55.0+vite@4.0.2
@@ -33,9 +33,9 @@ devDependencies:
   postcss: 8.4.20
   postcss-load-config: 4.0.1_postcss@8.4.20
   svelte: 3.55.0
-  svelte-check: 2.10.2_fcccc35b5bb700d52bf598026676f30d
-  svelte-preprocess: 4.10.7_e3c2d5f850013866002541695114082d
-  tailwindcss: 3.2.4
+  svelte-check: 2.10.2_7tgmgw23w4ankk7vtabgm5xtbu
+  svelte-preprocess: 4.10.7_4pbnl6cqae4gmabfifuvcfaifu
+  tailwindcss: 3.2.4_postcss@8.4.20
   tslib: 2.4.1
   typescript: 4.9.4
   vite: 4.0.2
@@ -281,8 +281,8 @@ packages:
       fastq: 1.14.0
     dev: true
 
-  /@skeletonlabs/skeleton/0.80.9:
-    resolution: {integrity: sha512-zDKkPWeD1kXujaEf2h7qE4lNPQvMuGkedpxheWqy7MwJJFfd96AjrV9UIa60owbiH5EQsJB27Kyh2qYY4YeCBQ==}
+  /@skeletonlabs/skeleton/0.86.9:
+    resolution: {integrity: sha512-4SvdJjId++HeHq2GrcSMs34Bju4T0xUOXyiJTpZT7mip9Gfp8KYQAWfKvj3u0ug7jYYuSniigJD7eXa452wmaQ==}
     dev: false
 
   /@sveltejs/vite-plugin-svelte/2.0.2_svelte@3.55.0+vite@4.0.2:
@@ -1067,7 +1067,7 @@ packages:
     engines: {node: '>= 0.4'}
     dev: true
 
-  /svelte-chartjs/3.1.0_chart.js@4.1.1+svelte@3.55.0:
+  /svelte-chartjs/3.1.0_rtwzhpjk3rjqr2jnch3pv3czl4:
     resolution: {integrity: sha512-tQ+v9fJOXUd44lKYUP3zINyyK4kRAWn2HBs8c1aIkJsodNJyZ6DJZgPywvNv2bbGIVbWXZ8aTgvDawUkday+zw==}
     peerDependencies:
       chart.js: ^3.5.0 || ^4.0.0
@@ -1077,7 +1077,7 @@ packages:
       svelte: 3.55.0
     dev: false
 
-  /svelte-check/2.10.2_fcccc35b5bb700d52bf598026676f30d:
+  /svelte-check/2.10.2_7tgmgw23w4ankk7vtabgm5xtbu:
     resolution: {integrity: sha512-h1Tuiir0m8J5yqN+Vx6qgKKk1L871e6a9o7rMwVWfu8Qs6Wg7x2R+wcxS3SO3VpW5JCxCat90rxPsZMYgz+HaQ==}
     hasBin: true
     peerDependencies:
@@ -1090,7 +1090,7 @@ packages:
       picocolors: 1.0.0
       sade: 1.8.1
       svelte: 3.55.0
-      svelte-preprocess: 4.10.7_e3c2d5f850013866002541695114082d
+      svelte-preprocess: 4.10.7_4pbnl6cqae4gmabfifuvcfaifu
       typescript: 4.9.4
     transitivePeerDependencies:
       - '@babel/core'
@@ -1114,7 +1114,7 @@ packages:
       svelte: 3.55.0
     dev: true
 
-  /svelte-preprocess/4.10.7_e3c2d5f850013866002541695114082d:
+  /svelte-preprocess/4.10.7_4pbnl6cqae4gmabfifuvcfaifu:
     resolution: {integrity: sha512-sNPBnqYD6FnmdBrUmBCaqS00RyCsCpj2BG58A1JBswNF7b0OKviwxqVrOL/CKyJrLSClrSeqQv5BXNg2RUbPOw==}
     engines: {node: '>= 9.11.2'}
     requiresBuild: true
@@ -1170,12 +1170,13 @@ packages:
   /svelte/3.55.0:
     resolution: {integrity: sha512-uGu2FVMlOuey4JoKHKrpZFkoYyj0VLjJdz47zX5+gVK5odxHM40RVhar9/iK2YFRVxvfg9FkhfVlR0sjeIrOiA==}
     engines: {node: '>= 8'}
-    dev: true
 
-  /tailwindcss/3.2.4:
+  /tailwindcss/3.2.4_postcss@8.4.20:
     resolution: {integrity: sha512-AhwtHCKMtR71JgeYDaswmZXhPcW9iuI9Sp2LvZPo9upDZ7231ZJ7eA9RaURbhpXGVlrjX4cFNlB4ieTetEb7hQ==}
     engines: {node: '>=12.13.0'}
     hasBin: true
+    peerDependencies:
+      postcss: ^8.0.9
     dependencies:
       arg: 5.0.2
       chokidar: 3.5.3

@@ -2,12 +2,28 @@
   import Header from './lib/Header.svelte';
   import Footer from './lib/Footer.svelte';
   import Form from './lib/Form.svelte';
-  import { ProgressRadial, Toast } from '@skeletonlabs/skeleton';
+  import {
+    Drawer,
+    ProgressRadial,
+    Toast
+  } from '@skeletonlabs/skeleton';
   import { loading } from './store';
 </script>
 
 <Header />
 <main class="min-h-screen mb-32 mt-10">
+  <Drawer position="right" width="w-40">
+    <nav>
+      <a href="https://nftforworld.com/" class="underline text-white">Inicio</a>
+      <a href="https://nftforworld.com/contact-us/"
+        >Contáctanos</a
+      >
+      <a href="https://nftforworld.com/consulta-poap/"
+        >Consulta POAP</a
+      >
+      <a href="https://nftforworld.com/links/">Links</a>
+    </nav>
+  </Drawer>
   {#if !$loading}
     <Form />
     <Toast />
