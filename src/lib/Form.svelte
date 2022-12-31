@@ -52,3 +52,9 @@
     </div>
   </form>
 {/if}
+
+<style>
+  .toast {
+    background-color: red;
+  }
+</style>
