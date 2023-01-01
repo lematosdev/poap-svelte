@@ -1,11 +1,9 @@
 <script lang="ts">
-  import {
-    AppBar,
-    drawerStore
-  } from '@skeletonlabs/skeleton';
+  import { AppBar, drawerStore } from "@skeletonlabs/skeleton";
 
   function drawerOpen(): void {
     drawerStore.open();
+    //open
   }
 </script>
 
@@ -22,12 +20,8 @@
   <svelte:fragment slot="trail">
     <nav class="hidden sm:block">
       <a href="https://nftforworld.com/">Inicio</a>
-      <a href="https://nftforworld.com/contact-us/"
-        >Contáctanos</a
-      >
-      <a href="https://nftforworld.com/consulta-poap/"
-        >Consulta POAP</a
-      >
+      <a href="https://nftforworld.com/contact-us/">Contáctanos</a>
+      <a href="https://nftforworld.com/consulta-poap/">Consulta POAP</a>
       <a href="https://nftforworld.com/links/">Links</a>
     </nav>
     <button
@@ -42,3 +36,9 @@
     </button>
   </svelte:fragment>
 </AppBar>
+
+<style>
+  /* a {
+    color: azure;
+  } */
+</style>

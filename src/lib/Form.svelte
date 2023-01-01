@@ -18,7 +18,7 @@
 </script>
 
 {#if $chartsData}
-  <div class="flex items-center justify-center flex-col ">
+  <div class="flex items-center justify-center flex-col">
     <button
       class="text-white shadow-md rounded-xl p-6"
       on:click={() => ($chartsData = null)}
@@ -32,11 +32,10 @@
     class="flex flex-row items-center justify-center"
     on:submit|preventDefault={handleSubmit}
   >
-    <div
-      class="bg-slate-300 text-gray-800 rounded-xl p-10  shadow-lg  drop-shadow-2xl "
-    >
+    <div class="bg-slate-300 text-gray-800 rounded-xl p-10 min-[639px]:p-3 sm:p-4 shadow-lg  drop-shadow-2xl">
       <div class="flex flex-initial m-5">
-        <h1>Ingresa el ID del evento</h1>
+        <h1 class="text-center  min-[639px]:content hidden sm:block ">Ingresa el ID del evento</h1>
+        <h1 class="text-center  min-[639px]:content  block sm:hidden ">Ingresa tu ID</h1>
       </div>
       <input
         type="number"
@@ -53,8 +52,3 @@
   </form>
 {/if}
 
-<style>
-  .toast {
-    background-color: red;
-  }
-</style>

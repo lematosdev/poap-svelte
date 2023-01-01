@@ -1,27 +1,35 @@
 <script lang="ts">
-  import Header from './lib/Header.svelte';
-  import Footer from './lib/Footer.svelte';
-  import Form from './lib/Form.svelte';
-  import {
-    Drawer,
-    ProgressRadial,
-    Toast
-  } from '@skeletonlabs/skeleton';
-  import { loading } from './store';
+  import Header from "./lib/Header.svelte";
+  import Footer from "./lib/Footer.svelte";
+  import Form from "./lib/Form.svelte";
+  import "@skeletonlabs/skeleton/themes/theme-skeleton.css";
+  import "@skeletonlabs/skeleton/styles/all.css";
+  import "../src/app.postcss";
+  import { Drawer, ProgressRadial, Toast } from "@skeletonlabs/skeleton";
+  import { loading } from "./store";
 </script>
 
 <Header />
 <main class="min-h-screen mb-32 mt-10">
   <Drawer position="right" width="w-40">
     <nav>
-      <a href="https://nftforworld.com/" class="underline text-white">Inicio</a>
-      <a href="https://nftforworld.com/contact-us/"
-        >Contáctanos</a
+      <a
+        style="color: beige; text-decoration: none;"
+        href="https://nftforworld.com/"
+        class="underline text-white">Inicio</a
       >
-      <a href="https://nftforworld.com/consulta-poap/"
-        >Consulta POAP</a
+      <a
+        style="color: beige; text-decoration: none;"
+        href="https://nftforworld.com/contact-us/">Contáctanos</a
       >
-      <a href="https://nftforworld.com/links/">Links</a>
+      <a
+        style="color: beige; text-decoration: none;"
+        href="https://nftforworld.com/consulta-poap/">Consulta POAP</a
+      >
+      <a
+        style="color: beige; text-decoration: none;"
+        href="https://nftforworld.com/links/">Links</a
+      >
     </nav>
   </Drawer>
   {#if !$loading}
@@ -32,3 +40,10 @@
   {/if}
 </main>
 <Footer />
+
+<style>
+  nav a {
+    color: aqua;
+    text-decoration: none;
+  }
+</style>
