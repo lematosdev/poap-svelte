@@ -10,24 +10,20 @@
 </script>
 
 <Header />
-<main class="min-h-screen mb-32 mt-10">
+<main class="flex justify-center items-start mt-10 min-h-screen">
   <Drawer position="right" width="w-40">
     <nav>
       <a
-        style="color: beige; text-decoration: none;"
         href="https://nftforworld.com/"
-        class="underline text-white">Inicio</a
+        class="no-underline text-white">Inicio</a
       >
       <a
-        style="color: beige; text-decoration: none;"
         href="https://nftforworld.com/contact-us/">Contáctanos</a
       >
       <a
-        style="color: beige; text-decoration: none;"
         href="https://nftforworld.com/consulta-poap/">Consulta POAP</a
       >
       <a
-        style="color: beige; text-decoration: none;"
         href="https://nftforworld.com/links/">Links</a
       >
     </nav>
@@ -41,9 +37,3 @@
 </main>
 <Footer />
 
-<style>
-  nav a {
-    color: aqua;
-    text-decoration: none;
-  }
-</style>

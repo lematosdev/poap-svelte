@@ -9,7 +9,7 @@
   Chart.register(ChartDataLabels);
 </script>
 
-<div class="grid grid-cols-2 gap-32 items-center text-center mt-4">
+<div class="grid grid-cols-1 sm:grid-cols-2 gap-32 items-center text-center mt-4 mx-7">
   <div>
     <h2 class="mb-2">Presencial VS Online</h2>
     <Pie

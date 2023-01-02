@@ -29,26 +29,23 @@
   </div>
 {:else}
   <form
-    class="flex flex-row items-center justify-center"
+    class="flex flex-col items-center justify-center bg-slate-300 text-gray-800 rounded-xl p-8 shadow-lg sm:w-1/2"
     on:submit|preventDefault={handleSubmit}
   >
-    <div class="bg-slate-300 text-gray-800 rounded-xl p-10 min-[639px]:p-3 sm:p-4 shadow-lg  drop-shadow-2xl">
-      <div class="flex flex-initial m-5">
-        <h1 class="text-center  min-[639px]:content hidden sm:block ">Ingresa el ID del evento</h1>
-        <h1 class="text-center  min-[639px]:content  block sm:hidden ">Ingresa tu ID</h1>
-      </div>
-      <input
-        type="number"
-        id="id"
-        name="eventId"
-        class="h-12 my-5 px-3 text-lg text-white border focus:outline-none focus:shadow-outline"
-        placeholder="Escribe tu ID"
-        on:wheel={(e) => e.currentTarget.blur()}
-      />
-      <div class="flex items-center justify-center">
-      <button class="btn btn-filled-surface btn-lg text-white">Enviar</button>
-    </div>
-    </div>
+    <span class="text-center text-2xl sm:text-4xl">
+      INGRESA EL ID DEL EVENTO
+    </span>
+    <input
+      type="number"
+      id="id"
+      name="eventId"
+      class="sm:w-1/3 my-3 text-lg text-white text-center border focus:outline-none focus:shadow-outline"
+      placeholder="Escribe tu ID"
+      on:wheel={(e) => e.currentTarget.blur()}
+    />
+    <button
+      class="btn btn-filled-surface btn-base sm:btn-lg text-white"
+      >Enviar</button
+    >
   </form>
 {/if}
-
