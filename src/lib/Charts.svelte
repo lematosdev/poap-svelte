@@ -11,9 +11,10 @@
 
 <div class="grid grid-cols-1 sm:grid-cols-2 gap-32 items-center text-center mt-4 mx-7">
   <div>
-    <h2 class="mb-2">Presencial VS Online</h2>
+    <h2 class="mb-2 font-bold tracking-wide text-xl pb-4">Presencial VS Online</h2>
     <Pie
-      data={$chartsData.chart1}
+      data={$chartsData.chart1
+      }
       options={{
         plugins: {
           legend: {
@@ -39,7 +40,7 @@
     />
   </div>
   <div>
-    <h2 class="mb-2">Minteos Eventos Online</h2>
+    <h2 class="mb-2 font-bold tracking-wide text-xl pb-4">Minteos Eventos Online</h2>
 
     <Pie
       data={$chartsData.chart2}
@@ -68,7 +69,7 @@
     />
   </div>
   <div>
-    <h2 class="mb-2">Minteos Eventos Presencial</h2>
+    <h2 class="mb-2 font-bold tracking-wide text-xl pb-4">Minteos Eventos Presencial</h2>
 
     <Bar
       data={$chartsData.chart3}
@@ -98,7 +99,7 @@
     />
   </div>
   <div>
-    <h2 class="mb-2">Eventos Presenciales</h2>
+    <h2 class="mb-2 font-bold tracking-wide text-xl pb-4">Eventos Presenciales </h2>
 
     <Bar
       data={$chartsData.chart4}

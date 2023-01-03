@@ -9,31 +9,37 @@
   import { loading } from "./store";
 </script>
 
-<Header />
-<main class="flex justify-center items-start mt-10 min-h-screen">
-  <Drawer position="right" width="w-40">
-    <nav>
-      <a
-        href="https://nftforworld.com/"
-        class="no-underline text-white">Inicio</a
-      >
-      <a
-        href="https://nftforworld.com/contact-us/">Contáctanos</a
-      >
-      <a
-        href="https://nftforworld.com/consulta-poap/">Consulta POAP</a
-      >
-      <a
-        href="https://nftforworld.com/links/">Links</a
-      >
-    </nav>
-  </Drawer>
-  {#if !$loading}
-    <Form />
-    <Toast />
-  {:else}
-    <ProgressRadial class="w-1/3 p-10 mx-auto my-0" />
-  {/if}
-</main>
-<Footer />
-
+<body class="bg-[#301161]">
+  <Header />
+  <main class="flex justify-center items-start mt-10 min-h-screen">
+    <Drawer position="right" width="w-40">
+      <nav>
+        <a class="!text-white !no-underline" href="https://nftforworld.com/"
+          >Inicio</a
+        >
+        <a
+          class="!text-white !no-underline"
+          href="https://nftforworld.com/contact-us/">Contáctanos</a
+        >
+        <a
+          class="!text-white !no-underline"
+          href="https://nftforworld.com/consulta-poap/">Consulta POAP</a
+        >
+        <a
+          class="!text-white !no-underline"
+          href="https://nftforworld.com/links/">Links</a
+        >
+      </nav>
+    </Drawer>
+    {#if !$loading}
+      <Form />
+      <Toast />
+    {:else}
+    <div class="w-2/3 h-300 md:w-1/3 md:h-200 lg:w-1/4 lg:h-200">
+      <ProgressRadial class=" p-10 mx-auto my-0" />
+    </div>
+     
+    {/if}
+  </main>
+  <Footer />
+</body>

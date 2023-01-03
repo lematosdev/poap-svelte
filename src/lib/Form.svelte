@@ -39,12 +39,12 @@
       type="number"
       id="id"
       name="eventId"
-      class="sm:w-1/3 my-3 text-lg text-white text-center border focus:outline-none focus:shadow-outline"
+      class="sm:w-1/3 my-7 text-lg text-white text-center border focus:outline-none focus:shadow-outline"
       placeholder="Escribe tu ID"
       on:wheel={(e) => e.currentTarget.blur()}
     />
     <button
-      class="btn btn-filled-surface btn-base sm:btn-lg text-white"
+      class="btn btn-filled-surface btn-base sm:btn-base text-white"
       >Enviar</button
     >
   </form>

@@ -1,5 +1,5 @@
 <footer class="w-full">
-  <div class="flex items-center justify-center bg-purple h-24 ">
+  <div class="flex items-center justify-center bg-purple h-24  mt-20">
     <a href="https://www.instagram.com/nftforworld/"
       ><img
         class="hover:opacity-75 m-1  "
