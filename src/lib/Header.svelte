@@ -1,8 +1,15 @@
 <script lang="ts">
-  import { AppBar, drawerStore } from "@skeletonlabs/skeleton";
+  import { AppBar, drawerStore, type DrawerSettings } from "@skeletonlabs/skeleton";
 
   function drawerOpen(): void {
-    drawerStore.open();
+    const settings: DrawerSettings = {
+		id: 'demo',
+		// Provide your prop overrides
+		position: 'right',
+		bgDrawer: 'bg-zinc-800 text-on-primary-token',
+		bgBackdrop: 'bg-zinc-800/50',
+	};
+    drawerStore.open(settings);
     //open
   }
 </script>
@@ -18,7 +25,7 @@
     >
   </svelte:fragment>
   <svelte:fragment slot="trail">
-    <nav class="hidden sm:block sm:pr-20 md:pr-1 lg:pr-20">
+    <nav class=" text-center hidden sm:block sm:pr-20 md:pr-1 lg:pr-20">
       <a href="https://nftforworld.com/">Inicio</a>
       <a href="https://nftforworld.com/contact-us/">Contáctanos</a>
       <a href="https://nftforworld.com/consulta-poap/">Consulta POAP</a>

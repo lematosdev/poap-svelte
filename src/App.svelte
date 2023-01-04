@@ -18,7 +18,7 @@
   class="flex justify-center items-start mt-10 min-h-screen text-gray-800"
 >
   <Drawer position="right" width="w-40">
-    <nav>
+    <nav class="mt-7 ml-6">
       <a
         class="!text-white !no-underline"
         href="https://nftforworld.com/">Inicio</a
