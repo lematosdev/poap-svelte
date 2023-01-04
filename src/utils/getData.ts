@@ -156,7 +156,7 @@ const exportData = async (id: string) => {
           {
             label: 'Eventos',
             data: onlineVSPhisycal,
-            backgroundColor: ["#a18cd1", "#7CB0DA","#BD426D","#D1D1FA","#90D0F0","#00f2fe","#918DB7"]
+            backgroundColor: ["#704F91","#7BB4DD"]
           }
         ]
       }
@@ -173,7 +173,7 @@ const exportData = async (id: string) => {
             data: Object.keys(mostMintedVirtual).map(
               (id) => mostMintedVirtual[id].totalAddresses
             ),
-            backgroundColor: ["#a18cd1", "#7CB0DA","#BD426D","#D1D1FA","#90D0F0","#00f2fe","#918DB7"]
+            backgroundColor: ["#7BB4DD", "#3578A8","#D8508F","#A61356","#704F91","#341356","#4A30D3","#2E11CD"]
           }
         ]
       }
@@ -190,7 +190,7 @@ const exportData = async (id: string) => {
             data: Object.keys(mostMintedPhisycal).map(
               (id) => mostMintedPhisycal[id].totalAddresses
             ),
-            backgroundColor:["#a18cd1", "#7CB0DA","#BD426D","#D1D1FA","#90D0F0","#00f2fe","#918DB7"]
+            backgroundColor:["#7BB4DD", "#3578A8","#D8508F","#A61356","#704F91","#341356","#4A30D3","#2E11CD"]
           }
         ]
       }
@@ -203,7 +203,7 @@ const exportData = async (id: string) => {
         datasets: [
           {
             data: Object.values(eventsCountries),
-            backgroundColor: ["#a18cd1", "#7CB0DA","#BD426D","#D1D1FA","#90D0F0","#00f2fe","#918DB7"]
+            backgroundColor: ["#7BB4DD", "#3578A8","#D8508F","#A61356","#704F91","#341356","#4A30D3","#2E11CD","#a18cd1", "#7CB0DA","#BD426D","#D1D1FA","#90D0F0","#00f2fe","#918DB7"]
           }
         ]
       }

@@ -12,7 +12,7 @@
   class="grid grid-cols-1 sm:grid-cols-2 gap-10 mt-4 mx-7 text-center w-3/4"
 >
   <div>
-    <h2 class="mb-2">Presencial VS Online</h2>
+    <h2 class="mb-2 h-20 min-h-min">Presencial VS Online</h2>
     <Pie
       data={$chartsData.chart1}
       options={{
@@ -51,7 +51,7 @@
     />
   </div>
   <div class="">
-    <h2 class="mb-2">Minteos Eventos Online</h2>
+    <h2 class="mb-2 h-20 min-h-min">Minteos Eventos Online</h2>
     <Pie
       data={$chartsData.chart2}
       options={{
@@ -90,7 +90,7 @@
     />
   </div>
   <div>
-    <h2 class="mb-2">Minteos Eventos Presencial</h2>
+    <h2 class="mb-2 h-20 min-h-min">Minteos Eventos Presencial</h2>
 
     <Pie
       data={$chartsData.chart3}
@@ -103,21 +103,26 @@
           },
           legend: {
             display: false
+          },
+          datalabels: {
+            formatter: (value, dnct1) => {
+              let sum = 0;
+              let dataArr =
+                dnct1.chart.data.datasets[0].data;
+              dataArr.map((data) => {
+                sum += Number(data);
+              });
+
+              let percentage =
+                ((value * 100) / sum).toFixed(2) + '%';
+              return percentage;
+            },
+            backgroundColor: '#262A27',
+            borderRadius: 8,
+            color: 'white',
+            textStrokeWidth: 0.2
           }
         },
-        scales: {
-          y: {
-            beginAtZero: true,
-            ticks: {
-              display: false
-            },
-            grid: { drawTicks: false, drawBorder: false }
-          },
-          x: {
-            beginAtZero: true,
-            grid: { drawTicks: false, drawBorder: false }
-          }
-        }
       }}
     />
     <div
@@ -126,7 +131,7 @@
     />
   </div>
   <div>
-    <h2 class="mb-2">Eventos Presenciales</h2>
+    <h2 class="mb-2 h-20 min-h-min">Eventos Presenciales</h2>
 
     <Pie
       data={$chartsData.chart4}
@@ -138,21 +143,25 @@
           },
           legend: {
             display: false
+          }, datalabels: {
+            formatter: (value, dnct1) => {
+              let sum = 0;
+              let dataArr =
+                dnct1.chart.data.datasets[0].data;
+              dataArr.map((data) => {
+                sum += Number(data);
+              });
+
+              let percentage =
+                ((value * 100) / sum).toFixed(2) + '%';
+              return percentage;
+            },
+            backgroundColor: '#262A27',
+            borderRadius: 8,
+            color: 'white',
+            textStrokeWidth: 0.2
           }
         },
-        scales: {
-          y: {
-            beginAtZero: true,
-            ticks: {
-              display: false
-            },
-            grid: { drawTicks: false, drawBorder: false }
-          },
-          x: {
-            beginAtZero: true,
-            grid: { drawTicks: false, drawBorder: false }
-          }
-        }
       }}
     />
     <div

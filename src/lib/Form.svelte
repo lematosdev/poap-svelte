@@ -20,7 +20,7 @@
 {#if $chartsData}
   <div class="flex items-center justify-center flex-col">
     <button
-      class="text-white shadow-md rounded-xl p-6 bg-purple"
+      class="text-white shadow-md rounded-xl p-6 mb-5 bg-purple"
       on:click={() => ($chartsData = null)}
     >
       Volver
