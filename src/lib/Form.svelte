@@ -20,7 +20,7 @@
 {#if $chartsData}
   <div class="flex items-center justify-center flex-col">
     <button
-      class="text-white shadow-md rounded-xl p-6"
+      class="text-white shadow-md rounded-xl p-6 bg-purple"
       on:click={() => ($chartsData = null)}
     >
       Volver
@@ -29,7 +29,7 @@
   </div>
 {:else}
   <form
-    class="flex flex-col items-center justify-center bg-slate-300 text-gray-800 rounded-xl p-8 shadow-lg sm:w-1/2"
+    class="flex flex-col items-center justify-center bg-violet-800 text-violet-50 rounded-xl p-8 shadow-lg sm:w-1/2"
     on:submit|preventDefault={handleSubmit}
   >
     <span class="text-center text-2xl sm:text-4xl">
@@ -39,12 +39,12 @@
       type="number"
       id="id"
       name="eventId"
-      class="sm:w-1/3 my-7 text-lg text-white text-center border focus:outline-none focus:shadow-outline"
+      class="sm:w-1/3 my-7 text-xl placeholder:text-gray-800 text-gray-800 bg-violet-100 text-center border focus:outline-none focus:shadow-outline"
       placeholder="Escribe tu ID"
       on:wheel={(e) => e.currentTarget.blur()}
     />
     <button
-      class="btn btn-filled-surface btn-base sm:btn-base text-white"
+      class="btn btn-filled-surface btn-base sm:btn-base text-white bg-purple font-bold"
       >Enviar</button
     >
   </form>

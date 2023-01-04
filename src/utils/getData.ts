@@ -8,7 +8,6 @@ import {
 const exportData = async (id: string) => {
   const tokens: any[] = [];
   const events = new Object();
-  //Error
 
   if (!id) {
     throw Error('No event id provided');
@@ -30,7 +29,7 @@ const exportData = async (id: string) => {
       `https://api.poap.tech/event/${id}/poaps`,
       options
     );
-    
+
     if (response.status !== 200) {
       function triggerToast(): void {
         const t: ToastSettings = {
@@ -45,7 +44,6 @@ const exportData = async (id: string) => {
       return triggerToast();
     }
     const data = await response.json();
-    console.log(response);
 
     while (tokens.length < data.total) {
       const response = await fetch(
@@ -57,7 +55,6 @@ const exportData = async (id: string) => {
       tokens.push(...(data.tokens as []));
     }
   } catch (error) {
-    console.log(error);
     throw Error('Error fetching tokens');
   }
 
@@ -159,7 +156,13 @@ const exportData = async (id: string) => {
           {
             label: 'Eventos',
             data: onlineVSPhisycal,
-            backgroundColor:["#887CAF", "#615192","#261758","#13073A","#403075"]
+            backgroundColor: [
+              '#887CAF',
+              '#615192',
+              '#261758',
+              '#13073A',
+              '#403075'
+            ]
           }
         ]
       }
@@ -176,14 +179,20 @@ const exportData = async (id: string) => {
             data: Object.keys(mostMintedVirtual).map(
               (id) => mostMintedVirtual[id].totalAddresses
             ),
-            backgroundColor:["#887CAF", "#615192","#261758","#13073A","#403075"]
+            backgroundColor: [
+              '#887CAF',
+              '#615192',
+              '#261758',
+              '#13073A',
+              '#403075'
+            ]
           }
         ]
       }
     };
 
     const chart3: ChartConfiguration = {
-      type: 'bar',
+      type: 'pie',
       data: {
         labels: Object.keys(mostMintedPhisycal).map(
           (id) => mostMintedPhisycal[id].name.split('-')[0]
@@ -193,20 +202,32 @@ const exportData = async (id: string) => {
             data: Object.keys(mostMintedPhisycal).map(
               (id) => mostMintedPhisycal[id].totalAddresses
             ),
-            backgroundColor:["#887CAF", "#615192","#261758","#13073A","#403075"]
+            backgroundColor: [
+              '#887CAF',
+              '#615192',
+              '#261758',
+              '#13073A',
+              '#403075'
+            ]
           }
         ]
       }
     };
 
     const chart4: ChartConfiguration = {
-      type: 'bar',
+      type: 'pie',
       data: {
         labels: Object.keys(eventsCountries),
         datasets: [
           {
-            data: Object.values(eventsCountries)
-            ,backgroundColor:["#887CAF", "#615192","#261758","#13073A","#403075"]
+            data: Object.values(eventsCountries),
+            backgroundColor: [
+              '#887CAF',
+              '#615192',
+              '#261758',
+              '#13073A',
+              '#403075'
+            ]
           }
         ]
       }
