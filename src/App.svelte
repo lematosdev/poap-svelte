@@ -11,6 +11,16 @@
     Toast
   } from '@skeletonlabs/skeleton';
   import { loading } from './store';
+  let showMessage = false;
+
+  const handleSubmit = async (event) => {
+    $loading = true;
+    showMessage = false;
+    setTimeout(() => {
+        showMessage = true;
+    }, 2000);
+   
+}
 </script>
 
 <Header />
@@ -47,7 +57,13 @@
       class="w-2/3 h-300 md:w-1/3 md:h-200 lg:w-1/4 lg:h-200"
     >
       <ProgressRadial class=" p-10 mx-auto my-0" />
+      <h2 class="w-96 text-justify">Esto está tardando un poco. Ten paciencia... 😓 </h2>
+      {#if showMessage}
+      <h2 class="w-96 text-justify">Esto está tardando un poco. Ten paciencia... 😓 </h2>
+      {/if}
     </div>
+     
+    
   {/if}
 </main>
 <Footer />

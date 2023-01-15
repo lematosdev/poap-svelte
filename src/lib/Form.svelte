@@ -2,6 +2,7 @@
   import { chartsData, loading } from "../store";
   import getData from "../utils/getData";
   import Charts from "./Charts.svelte";
+ 
 
   const handleSubmit = async (
     event: Event & {
@@ -20,13 +21,14 @@
 {#if $chartsData}
   <div class="flex items-center justify-center flex-col">
     <button
-      class="text-white shadow-md rounded-xl p-6 mb-5 bg-purple"
+      class="text-white shadow-md rounded-xl p-6 mb-5 mt-5 bg-purple"
       on:click={() => ($chartsData = null)}
     >
       Volver
     </button>
     <Charts />
   </div>
+
 {:else}
   <form
     class="flex flex-col items-center justify-center bg-violet-800 text-violet-50 rounded-xl p-8 shadow-lg sm:w-1/2"
@@ -45,7 +47,7 @@
     />
 
     <div
-      class="cf-turnstile-response"
+      class="cf-turnstile-response my-1"
       data-sitekey="0x4AAAAAAAB_vYWBkjgVuXCq"
     />
 
