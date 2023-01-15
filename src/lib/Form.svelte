@@ -1,7 +1,7 @@
 <script lang="ts">
-  import { chartsData, loading } from '../store';
-  import getData from '../utils/getData';
-  import Charts from './Charts.svelte';
+  import { chartsData, loading } from "../store";
+  import getData from "../utils/getData";
+  import Charts from "./Charts.svelte";
 
   const handleSubmit = async (
     event: Event & {
@@ -10,7 +10,7 @@
   ) => {
     $loading = true;
     const formData = new FormData(event.currentTarget);
-    const eventId = formData.get('eventId');
+    const eventId = formData.get("eventId");
     const data = await getData(eventId as string);
     $chartsData = data;
     $loading = false;
@@ -43,6 +43,12 @@
       placeholder="Escribe tu ID"
       on:wheel={(e) => e.currentTarget.blur()}
     />
+
+    <div
+      class="cf-turnstile-response"
+      data-sitekey="0x4AAAAAAAB_vYWBkjgVuXCq"
+    />
+
     <button
       class="btn btn-filled-surface btn-base sm:btn-base text-white bg-purple font-bold"
       >Enviar</button

@@ -15,7 +15,7 @@
 
 <Header />
 <main
-  class="flex justify-center items-start mt-10 min-h-screen text-gray-800"
+  class="flex justify-center items-center min-h-screen text-gray-800"
 >
   <Drawer position="right" width="w-40">
     <nav class="mt-7 ml-6">
