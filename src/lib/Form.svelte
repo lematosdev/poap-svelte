@@ -18,7 +18,7 @@
 </script>
 
 {#if $chartsData}
-  <div class="flex items-center justify-center flex-col">
+  <div class="flex items-center justify-center flex-col mt-5">
     <button
       class="text-white shadow-md rounded-xl p-6 mb-5 bg-purple"
       on:click={() => ($chartsData = null)}
@@ -39,15 +39,17 @@
       type="number"
       id="id"
       name="eventId"
+      required
       class="sm:w-1/3 my-7 text-xl placeholder:text-gray-800 text-gray-800 bg-violet-100 text-center border focus:outline-none focus:shadow-outline"
       placeholder="Escribe tu ID"
       on:wheel={(e) => e.currentTarget.blur()}
     />
 
-    <div
-      class="cf-turnstile-response"
-      data-sitekey="0x4AAAAAAAB_vYWBkjgVuXCq"
-    />
+    <div class="checkbox mb-3">
+      <!-- The following line controls and configures the Turnstile widget. -->
+      <div class="cf-turnstile" data-sitekey="0x4AAAAAAAB_vYWBkjgVuXCq" data-theme="light"></div>
+      <!-- end. -->
+    </div>
 
     <button
       class="btn btn-filled-surface btn-base sm:btn-base text-white bg-purple font-bold"

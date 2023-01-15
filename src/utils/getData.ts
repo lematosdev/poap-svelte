@@ -16,9 +16,16 @@ function triggerToast(): void {
 }
 
 const exportData = async (id: string) => {
-  const response = await fetch(
-    `${import.meta.env.VITE_API_URL}/${id}`
-  );
+  let response = null;
+  
+  try {
+    response = await fetch(
+      `${import.meta.env.VITE_API_URL}/${id}`
+    );
+  } catch (error) {
+    triggerToast();
+    return;
+  }
 
   if (!response.ok) {
     triggerToast();
@@ -105,7 +112,7 @@ const exportData = async (id: string) => {
   )
     .slice(0, 5)
     // map the array to return key value pairs
-    .map((item) => [item[1][0], item[1][1]]) ;
+    .map((item) => [item[1][0], item[1][1]]);
 
   const chart4: ChartConfiguration = {
     type: 'pie',
