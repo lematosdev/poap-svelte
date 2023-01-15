@@ -1,6 +1,6 @@
 <script lang="ts">
   import Chart from 'chart.js/auto';
-  import { Pie, Bar } from 'svelte-chartjs';
+  import { Pie, Bar, Doughnut } from 'svelte-chartjs';
   import ChartDataLabels from 'chartjs-plugin-datalabels';
   import { chartsData } from '../store';
   import htmlLegendPlugin from '../utils/htmlPlugin';
@@ -9,7 +9,7 @@
 </script>
 
 <div
-  class="grid grid-cols-1 sm:grid-cols-2 gap-10 mt-4 mx-7 text-center w-3/4"
+  class="grid grid-cols-1 sm:grid-cols-2 gap-x-36 gap-y-10 mt-4 mx-7 text-center"
 >
   <div>
     <h2 class="mb-2 h-20 min-h-min">Presencial VS Online</h2>
@@ -52,7 +52,7 @@
   </div>
   <div class="">
     <h2 class="mb-2 h-20 min-h-min">Minteos Eventos Online</h2>
-    <Pie
+    <Doughnut
       data={$chartsData.chart2}
       options={{
         responsive: true,
@@ -92,7 +92,7 @@
   <div>
     <h2 class="mb-2 h-20 min-h-min">Minteos Eventos Presencial</h2>
 
-    <Pie
+    <Doughnut
       data={$chartsData.chart3}
       options={{
         responsive: true,

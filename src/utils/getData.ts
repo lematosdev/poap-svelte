@@ -1,224 +1,149 @@
-import { getAccessToken } from './accessToken';
 import type { ChartConfiguration } from 'chart.js/auto';
 import {
   toastStore,
   type ToastSettings
 } from '@skeletonlabs/skeleton';
 
+function triggerToast(): void {
+  const t: ToastSettings = {
+    message: 'Error al obtener los datos',
+    // Optional: Presets for primary | secondary | tertiary | warning
+    preset: 'warning',
+    // Optional: The auto-hide settings
+    autohide: true
+  };
+  toastStore.trigger(t);
+}
+
 const exportData = async (id: string) => {
-  const tokens: any[] = [];
-  const events = new Object();
+  const response = await fetch(
+    `${import.meta.env.VITE_API_URL}/${id}`
+  );
 
-  if (!id) {
-    throw Error('No event id provided');
+  if (!response.ok) {
+    triggerToast();
+    return;
   }
 
-  try {
-    const access_token = await getAccessToken();
+  const {
+    onlineVSPhisycal,
+    mostMintedVirtual,
+    mostMintedPhisycal,
+    eventsCountries
+  } = await response.json();
 
-    const options = {
-      method: 'GET',
-      headers: {
-        accept: 'application/json',
-        Authorization: `Bearer ${access_token}`,
-        'X-API-Key': import.meta.env.VITE_API_KEY
-      }
-    };
-
-    const response = await fetch(
-      `https://api.poap.tech/event/${id}/poaps`,
-      options
-    );
-
-    if (response.status !== 200) {
-      function triggerToast(): void {
-        const t: ToastSettings = {
-          message: '😫 ohh no, Este  ID no es valido.',
-          preset: 'error',
-          autohide: true,
-          timeout: 5000
-        };
-        toastStore.trigger(t);
-      }
-
-      return triggerToast();
-    }
-    const data = await response.json();
-
-    while (tokens.length < data.total) {
-      const response = await fetch(
-        `https://api.poap.tech/event/${id}/poaps?offset=${tokens.length}`,
-        options
-      );
-      const data = await response.json();
-
-      tokens.push(...(data.tokens as []));
-    }
-  } catch (error) {
-    throw Error('Error fetching tokens');
-  }
-
-  try {
-    await Promise.allSettled(
-      tokens.map(async (token) => {
-        const res = await fetch(
-          `https://api.poap.tech/actions/scan/${token.owner.id}`,
-          {
-            headers: {
-              'X-API-Key': import.meta.env.VITE_API_KEY
-            }
-          }
-        );
-        const poaps = await res.json();
-
-        await Promise.all(
-          poaps.map((poap: any) => {
-            if (!events[poap.event.id]) {
-              events[poap.event.id] = {
-                firstTimeMinted: [poap],
-                name: poap.event.name,
-                description: poap.event.description,
-                totalAddresses: 1
-              };
-            } else {
-              events[poap.event.id].firstTimeMinted.push(
-                poap
-              );
-              events[poap.event.id].totalAddresses++;
-            }
-          })
-        );
-      })
-    );
-  } catch (error) {
-    console.log(error);
-    throw Error('Error fetching events');
-  }
-
-  try {
-    const eventsData = await Promise.all(
-      Object.keys(events).map(async (id) => {
-        const res = await fetch(
-          `https://api.poap.tech/events/id/${id}`,
-          {
-            headers: {
-              'X-API-Key': import.meta.env.VITE_API_KEY
-            }
-          }
-        );
-        const data = await res.json();
-        return data;
-      })
-    );
-
-    const onlineVSPhisycal = eventsData.reduce(
-      (acc, cur) => {
-        if (cur.virtual_event) {
-          acc[0]++;
-        } else {
-          acc[1]++;
+  const chart1: ChartConfiguration = {
+    type: 'pie',
+    data: {
+      labels: ['Online', 'Presencial'],
+      datasets: [
+        {
+          label: 'Eventos',
+          data: onlineVSPhisycal,
+          backgroundColor: ['#704F91', '#7BB4DD']
         }
-        return acc;
-      },
-      [0, 0]
-    );
-    const mostMintedVirtual = eventsData
-      .filter((e) => e.virtual_event)
-      .map((e) => events[e.id])
-      .sort((a, b) => b.totalAddresses - a.totalAddresses)
-      .slice(0, 5);
+      ]
+    }
+  };
 
-    const mostMintedPhisycal = eventsData
-      .filter((e) => !e.virtual_event)
-      .map((e) => events[e.id])
-      .sort((a, b) => b.totalAddresses - a.totalAddresses)
-      .slice(0, 5);
-
-    const eventsCountries = eventsData.reduce(
-      (acc, cur) => {
-        if (!cur.virtual_event || !cur.country) return acc;
-        const country = cur.country.trim();
-
-        if (!acc[country]) {
-          acc[country] = 1;
-        } else {
-          acc[country]++;
+  const chart2: ChartConfiguration = {
+    type: 'pie',
+    data: {
+      labels: mostMintedVirtual.map(
+        (item) => item.name.split('-')[0]
+      ),
+      datasets: [
+        {
+          data: mostMintedVirtual.map(
+            (item) => item.totalAddresses
+          ),
+          backgroundColor: [
+            '#7BB4DD',
+            '#3578A8',
+            '#D8508F',
+            '#A61356',
+            '#704F91',
+            '#341356',
+            '#4A30D3',
+            '#2E11CD'
+          ]
         }
-        return acc;
-      },
-      new Object()
-    );
-    const chart1: ChartConfiguration = {
-      type: 'pie',
-      data: {
-        labels: ['Online', 'Presencial'],
-        datasets: [
-          {
-            label: 'Eventos',
-            data: onlineVSPhisycal,
-            backgroundColor: ["#704F91","#7BB4DD"]
-          }
-        ]
-      }
-    };
+      ]
+    }
+  };
 
-    const chart2: ChartConfiguration = {
-      type: 'pie',
-      data: {
-        labels: Object.keys(mostMintedVirtual).map(
-          (id) => mostMintedVirtual[id].name.split('-')[0]
-        ),
-        datasets: [
-          {
-            data: Object.keys(mostMintedVirtual).map(
-              (id) => mostMintedVirtual[id].totalAddresses
-            ),
-            backgroundColor: ["#7BB4DD", "#3578A8","#D8508F","#A61356","#704F91","#341356","#4A30D3","#2E11CD"]
-          }
-        ]
-      }
-    };
+  const chart3: ChartConfiguration = {
+    type: 'pie',
+    data: {
+      labels: mostMintedPhisycal.map(
+        (item) => item.name.split('-')[0]
+      ),
+      datasets: [
+        {
+          data: mostMintedPhisycal.map(
+            (item) => item.totalAddresses
+          ),
+          backgroundColor: [
+            '#7BB4DD',
+            '#3578A8',
+            '#D8508F',
+            '#A61356',
+            '#704F91',
+            '#341356',
+            '#4A30D3',
+            '#2E11CD'
+          ]
+        }
+      ]
+    }
+  };
 
-    const chart3: ChartConfiguration = {
-      type: 'pie',
-      data: {
-        labels: Object.keys(mostMintedPhisycal).map(
-          (id) => mostMintedPhisycal[id].name.split('-')[0]
-        ),
-        datasets: [
-          {
-            data: Object.keys(mostMintedPhisycal).map(
-              (id) => mostMintedPhisycal[id].totalAddresses
-            ),
-            backgroundColor:["#7BB4DD", "#3578A8","#D8508F","#A61356","#704F91","#341356","#4A30D3","#2E11CD"]
-          }
-        ]
-      }
-    };
+  const sortedEventsCountries = Object.entries(
+    Object.entries(eventsCountries).sort(
+      ([, a]: any, [, b]: any) => b - a
+    )
+  )
+    .slice(0, 5)
+    // map the array to return key value pairs
+    .map((item) => [item[1][0], item[1][1]]) ;
 
-    const chart4: ChartConfiguration = {
-      type: 'pie',
-      data: {
-        labels: Object.keys(eventsCountries),
-        datasets: [
-          {
-            data: Object.values(eventsCountries),
-            backgroundColor: ["#7BB4DD", "#3578A8","#D8508F","#A61356","#704F91","#341356","#4A30D3","#2E11CD","#a18cd1", "#7CB0DA","#BD426D","#D1D1FA","#90D0F0","#00f2fe","#918DB7"]
-          }
-        ]
-      }
-    };
+  const chart4: ChartConfiguration = {
+    type: 'pie',
+    data: {
+      labels: sortedEventsCountries.map(([key]) => key),
+      datasets: [
+        {
+          data: sortedEventsCountries.map(([, value]) =>
+            Number(value)
+          ),
+          backgroundColor: [
+            '#7BB4DD',
+            '#3578A8',
+            '#D8508F',
+            '#A61356',
+            '#704F91',
+            '#341356',
+            '#4A30D3',
+            '#2E11CD',
+            '#a18cd1',
+            '#7CB0DA',
+            '#BD426D',
+            '#D1D1FA',
+            '#90D0F0',
+            '#00f2fe',
+            '#918DB7'
+          ]
+        }
+      ]
+    }
+  };
 
-    return {
-      chart1: chart1.data,
-      chart2: chart2.data,
-      chart3: chart3.data,
-      chart4: chart4.data
-    };
-  } catch (err) {
-    console.log(err);
-    throw Error('Error building chart data');
-  }
+  return {
+    chart1: chart1.data,
+    chart2: chart2.data,
+    chart3: chart3.data,
+    chart4: chart4.data
+  };
 };
 
 export default exportData;
