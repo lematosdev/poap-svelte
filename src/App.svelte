@@ -10,7 +10,8 @@
     ProgressRadial,
     Toast
   } from '@skeletonlabs/skeleton';
-  import { loading } from './store';
+  import { chartsData, loading } from './store';
+  import Charts from './lib/Charts.svelte';
 </script>
 
 <Header />
@@ -39,9 +40,11 @@
       >
     </nav>
   </Drawer>
-  {#if !$loading}
+  {#if !$loading && !$chartsData}
     <Form />
     <Toast />
+  {:else if $chartsData}
+    <Charts />
   {:else}
     <div
       class="w-2/3 h-300 md:w-1/3 md:h-200 lg:w-1/4 lg:h-200"

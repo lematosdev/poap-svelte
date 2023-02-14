@@ -17,7 +17,7 @@ function triggerToast(): void {
 
 const exportData = async (id: string) => {
   let response = null;
-  
+
   try {
     response = await fetch(
       `${import.meta.env.VITE_API_URL}/${id}`
@@ -36,7 +36,8 @@ const exportData = async (id: string) => {
     onlineVSPhisycal,
     mostMintedVirtual,
     mostMintedPhisycal,
-    eventsCountries
+    eventsCountries,
+    excel
   } = await response.json();
 
   const chart1: ChartConfiguration = {
@@ -149,7 +150,8 @@ const exportData = async (id: string) => {
     chart1: chart1.data,
     chart2: chart2.data,
     chart3: chart3.data,
-    chart4: chart4.data
+    chart4: chart4.data,
+    excel
   };
 };
 
