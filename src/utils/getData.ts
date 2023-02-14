@@ -20,7 +20,7 @@ const exportData = async (id: string) => {
 
   try {
     response = await fetch(
-      `${import.meta.env.VITE_API_URL}/${id}`
+      `${import.meta.env.VITE_URL}/${id}`
     );
   } catch (error) {
     triggerToast();

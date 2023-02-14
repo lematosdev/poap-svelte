@@ -1,7 +1,5 @@
 <script lang="ts">
   import Header from './lib/Header.svelte';
-  import Footer from './lib/Footer.svelte';
-  import Form from './lib/Form.svelte';
   import '@skeletonlabs/skeleton/themes/theme-skeleton.css';
   import '@skeletonlabs/skeleton/styles/all.css';
   import '../src/app.postcss';
@@ -13,12 +11,7 @@
   import { chartsData, loading } from './store';
   import Charts from './lib/Charts.svelte';
   import Form from './lib/Form.svelte';
-  import { chartsData } from './store';
-  import {
-    AppBar,
-    ProgressBar,
-    ProgressRadial
-  } from '@skeletonlabs/skeleton';
+  import Footer from './lib/Footer.svelte';
 </script>
 
 <Header />
