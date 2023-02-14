@@ -1,127 +1,158 @@
-import { getAccessToken } from './accessToken';
 import type { ChartConfiguration } from 'chart.js/auto';
+import {
+  toastStore,
+  type ToastSettings
+} from '@skeletonlabs/skeleton';
+
+function triggerToast(): void {
+  const t: ToastSettings = {
+    message: 'Error al obtener los datos',
+    // Optional: Presets for primary | secondary | tertiary | warning
+    preset: 'warning',
+    // Optional: The auto-hide settings
+    autohide: true
+  };
+  toastStore.trigger(t);
+}
 
 const exportData = async (id: string) => {
-  const tokens: any[] = [];
-  const events = new Object();
-
-  if (!id) {
-    throw Error('No event id provided');
-  }
+  let response = null;
 
   try {
-    const access_token = await getAccessToken();
-
-    const options = {
-      method: 'GET',
-      headers: {
-        accept: 'application/json',
-        Authorization: `Bearer ${access_token}`,
-        'X-API-Key': import.meta.env.VITE_API_KEY
-      }
-    };
-
-    const response = await fetch(
-      `https://api.poap.tech/event/${id}/poaps`,
-      options
+    response = await fetch(
+      `${import.meta.env.VITE_API_URL}/${id}`
     );
+  } catch (error) {
+    triggerToast();
+    return;
+  }
 
-    const data = await response.json();
+  if (!response.ok) {
+    triggerToast();
+    return;
+  }
 
-    while (tokens.length < data.total) {
-      const response = await fetch(
-        `https://api.poap.tech/event/${id}/poaps?offset=${tokens.length}`,
-        options
-      );
-      const data = await response.json();
+  const {
+    onlineVSPhisycal,
+    mostMintedVirtual,
+    mostMintedPhisycal,
+    eventsCountries,
+    excel
+  } = await response.json();
 
-      tokens.push(...(data.tokens as []));
+  const chart1: ChartConfiguration = {
+    type: 'pie',
+    data: {
+      labels: ['Online', 'Presencial'],
+      datasets: [
+        {
+          label: 'Eventos',
+          data: onlineVSPhisycal,
+          backgroundColor: ['#704F91', '#7BB4DD']
+        }
+      ]
     }
-  } catch (error) {
-    console.log(error);
-    throw Error('Error fetching tokens');
-  }
+  };
 
-  try {
-    await Promise.allSettled(
-      tokens.map(async (token) => {
-        const res = await fetch(
-          `https://api.poap.tech/actions/scan/${token.owner.id}`,
-          {
-            headers: {
-              'X-API-Key': import.meta.env.VITE_API_KEY
-            }
-          }
-        );
-        const poaps = await res.json();
+  const chart2: ChartConfiguration = {
+    type: 'pie',
+    data: {
+      labels: mostMintedVirtual.map(
+        (item) => item.name.split('-')[0]
+      ),
+      datasets: [
+        {
+          data: mostMintedVirtual.map(
+            (item) => item.totalAddresses
+          ),
+          backgroundColor: [
+            '#7BB4DD',
+            '#3578A8',
+            '#D8508F',
+            '#A61356',
+            '#704F91',
+            '#341356',
+            '#4A30D3',
+            '#2E11CD'
+          ]
+        }
+      ]
+    }
+  };
 
-        await Promise.all(
-          poaps.map((poap: any) => {
-            if (!events[poap.event.id]) {
-              events[poap.event.id] = {
-                firstTimeMinted: [poap],
-                name: poap.event.name,
-                description: poap.event.description,
-                totalAddresses: 1
-              };
-            } else {
-              events[poap.event.id].firstTimeMinted.push(
-                poap
-              );
-              events[poap.event.id].totalAddresses++;
-            }
-          })
-        );
-      })
-    );
-  } catch (error) {
-    console.log(error);
-    throw Error('Error fetching events');
-  }
+  const chart3: ChartConfiguration = {
+    type: 'pie',
+    data: {
+      labels: mostMintedPhisycal.map(
+        (item) => item.name.split('-')[0]
+      ),
+      datasets: [
+        {
+          data: mostMintedPhisycal.map(
+            (item) => item.totalAddresses
+          ),
+          backgroundColor: [
+            '#7BB4DD',
+            '#3578A8',
+            '#D8508F',
+            '#A61356',
+            '#704F91',
+            '#341356',
+            '#4A30D3',
+            '#2E11CD'
+          ]
+        }
+      ]
+    }
+  };
 
-  try {
-    const eventsData = await Promise.all(
-      Object.keys(events).map(async (id) => {
-        const res = await fetch(
-          `https://api.poap.tech/events/id/${id}`,
-          {
-            headers: {
-              'X-API-Key': import.meta.env.VITE_API_KEY
-            }
-          }
-        );
-        const data = await res.json();
-        return data;
-      })
-    );
+  const sortedEventsCountries = Object.entries(
+    Object.entries(eventsCountries).sort(
+      ([, a]: any, [, b]: any) => b - a
+    )
+  )
+    .slice(0, 5)
+    // map the array to return key value pairs
+    .map((item) => [item[1][0], item[1][1]]);
 
-    const config: ChartConfiguration = {
-      type: 'pie',
-      data: {
-        labels: ['Online', 'Presencial'],
-        datasets: [
-          {
-            data: eventsData.reduce(
-              (acc, cur) => {
-                if (cur.virtual_event) {
-                  acc[0]++;
-                } else {
-                  acc[1]++;
-                }
-                return acc;
-              },
-              [0, 0]
-            )
-          }
-        ]
-      }
-    };
+  const chart4: ChartConfiguration = {
+    type: 'pie',
+    data: {
+      labels: sortedEventsCountries.map(([key]) => key),
+      datasets: [
+        {
+          data: sortedEventsCountries.map(([, value]) =>
+            Number(value)
+          ),
+          backgroundColor: [
+            '#7BB4DD',
+            '#3578A8',
+            '#D8508F',
+            '#A61356',
+            '#704F91',
+            '#341356',
+            '#4A30D3',
+            '#2E11CD',
+            '#a18cd1',
+            '#7CB0DA',
+            '#BD426D',
+            '#D1D1FA',
+            '#90D0F0',
+            '#00f2fe',
+            '#918DB7'
+          ]
+        }
+      ]
+    }
+  };
 
-    return { chart1: config.data };
-  } catch (err) {
-    console.log(err);
-    throw Error('Error building chart data');
-  }
+  return {
+    chart1: chart1.data,
+    chart2: chart2.data,
+    chart3: chart3.data,
+    chart4: chart4.data,
+    excel
+  };
 };
 
 export default exportData;

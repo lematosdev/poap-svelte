@@ -19,7 +19,7 @@
           datasets: [
             {
               data: [11.1, 89.9,10],
-              backgroundColor: ["#6CE5E8", "#41B8D5","#41B825"],
+              backgroundColor: ["##301161", "##7CB0DA","##BD426D","##D1D1FA","##90D0F0","#553DD6","#918DB7"],
             },
           ],
         },

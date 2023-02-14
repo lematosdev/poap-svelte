@@ -1,4 +1,3 @@
-import '@skeletonlabs/skeleton/themes/theme-skeleton.css';
 import './app.postcss';
 import App from './App.svelte';
 
